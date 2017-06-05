@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+
+<div class="row">
+    <div class="col-sm-4">
+        <h1 style="color: #f8666d;">Campaigns</h1>
+    </div>
+    <div class="col-sm-4">
+        <!--<p>
+        <form method="GET" action=""></br>
+            <input type="text" name="q" placeholder="Search Socio Deals" value="{{ request.GET.q }}">
+            <input type="submit" value="Search"/>
+        </form>
+        </p>-->
+    </div></br>
+
+    <div class="col-sm-4 pull-right">
+
+        <a href="{% url 'sociodeal_create' %}"><button type="button" class="btn btn-default pull-right" style="color: white; background:#f8666d;">Create Campaign</button></a>
+
+    </div>
+</div>
+<hr>
+
+{{ form.media }}
+
+</br>
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>Tagline</th>
+                <th>Image</th>
+                <th>Active From</th>
+                <th>Active To</th>
+                <th>Detail</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for obj in object_list %}
+            <tr>
+                <td>{{ obj.sociodealname }}</td>
+                <td><img src="{{ obj.sociodeallogo.url }}" width="100px" height="100px"></td>
+                <td>{{ obj.activefrom }}</td>
+                <td>{{ obj.activeto }}</td>
+                <td><a href="{% url 'sociodeal_detail' slug=obj.slug %}" class="btn btn-default" style="color: white; background:#00afc6;" role="button">Detail</a></td>
+                <td><a href="{% url 'sociodeal_update' slug=obj.slug %}" class="btn btn-default" style="color: white; background:#00afc6;" role="button">Edit</a></td>
+                <td><a href="{% url 'sociodeal_delete' slug=obj.slug %}" class="btn btn-default" style="color: white; background:#00afc6;" role="button">Delete</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <form action="" method="post">{% csrf_token %}
+                <p>Are you sure you want to delete "{{ object }}"?</p>
+                <input type="submit" value="Confirm" />
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock content %}

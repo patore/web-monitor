@@ -25,7 +25,7 @@ SECRET_KEY = 'q^2co7qiin(a9(a(wj*qf6ayq05pk+(mggn#w&pwg3w&r^&p*0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['io-web-monitor.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','io-web-monitor.herokuapp.com']
 
 
 # Application definition
@@ -38,7 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'monitor'
+    'crispy_forms',
+    'monitor',
+    'casing_pressure',
+    'company',
+    'device',
+    'oil_level',
+    'salt_water_level',
+    'salt_water_flow',
+    'salt_water_pressure',
+    'tubing_pressure'
 ]
 
 MIDDLEWARE = [
@@ -118,15 +127,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-STATIC_URL = os.path.join(BASE_DIR, "static_in_pro", "our_static"),
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_in_env", "static_root")
+
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static_in_pro", "our_static"),
+    os.path.join(BASE_DIR, "static_in_pro", "our_static/"),
     #os.path.join(BASE_DIR, "static_in_env"),
     #'/var/www/static/',
 )
 
+STATIC_URL = os.path.join(BASE_DIR, "static_in_env/")
+STATIC_ROOT = STATIC_URL
 MEDIA_URL = 'media/'
 MEDIA_ROOT = MEDIA_URL
 
