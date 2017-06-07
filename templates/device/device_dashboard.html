@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1 style="color: #f8666d;">{{ title }}</h1>
+
+
+
+<hr>
+<!-- Begin Events Section -->
+<div>
+    <div class="row">
+
+        {% for obj in object_list %}
+
+        <div class="col-sm-6 col-md-6">
+
+            <div class="panel" style="background-color: #f8666d; color: white;">
+
+                <div class="panel-heading">
+                     <a href="{% url 'device_detail' slug=obj.slug %}">
+                    <div class="row">
+                        <div class="col-xs-3" style="color: white;">
+                            <i class="fa fa-database aria-hidden='true' fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right" style="color: white;">
+                            <div class="huge"><h1>{{ transactions }}</h1></div>
+                            <div>{{ obj.name }}</div>
+                            <div>{{ obj.company }}</div>
+                            <div>{{ obj.description }}</div>
+                            <div>{{ obj.address }}</div>
+                            <div>{{ obj.longitude }}</div>
+                            <div>{{ obj.latitude }}</div>
+                            <div>{{ obj.serialNumber }}</div>
+                            <div>{{ obj.slug }}</div>
+                            <div>{{ obj.active }}</div>
+                            <div>{{ obj.timestamp }}</div>
+                        </div>
+                    </div>
+                          </a>
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<!-- End Events Section -->
+<hr>
+
+
+
+{% endblock content %}
+

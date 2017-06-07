@@ -141,3 +141,6 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = MEDIA_URL
 
 
+SITE_ID = 1
+
+
